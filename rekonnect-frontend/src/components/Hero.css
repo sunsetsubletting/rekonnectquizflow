@@ -1,0 +1,58 @@
+.hero {
+  width: 100%;
+  padding: 80px 20px;
+  text-align: center;
+  background: #fafafa;
+}
+
+.hero-text {
+  margin-bottom: 50px;
+}
+
+.hero-title {
+  font-family: "Playfair Display", serif;
+  font-size: 48px;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin-bottom: 10px;
+}
+
+.hero-sub {
+  font-size: 18px;
+  color: #555;
+  max-width: 600px;
+  margin: 0 auto 30px auto;
+  line-height: 1.5;
+}
+
+.hero-cta {
+  padding: 14px 34px;
+  font-size: 16px;
+  background: #1a1a1a;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.hero-cta:hover {
+  opacity: 0.85;
+}
+
+.hero-lineup {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.hero-bottle {
+  width: 160px;
+  transition: transform 0.2s ease;
+}
+
+.hero-bottle:hover {
+  transform: translateY(-6px);
+}

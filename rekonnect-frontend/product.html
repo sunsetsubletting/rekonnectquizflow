@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rekonnect – Product</title>
+  <link rel="stylesheet" href="assets/style.css" />
+</head>
+<body>
+<div class="rk-product-page">
+  <section class="rk-hero">
+    <div class="rk-hero-image">
+      <img id="rk-mainImage" src="assets/img1.png" class="rk-main-img">
+      <button class="rk-arrow rk-left" onclick="rkPrevImage()">‹</button>
+      <button class="rk-arrow rk-right" onclick="rkNextImage()">›</button>
+    </div>
+    <div class="rk-hero-info">
+      <h1 class="rk-title">Rekonnect Supplement</h1>
+      <p class="rk-description">Ayurvedic-focused wellness engineered for clarity, mood, and clean energy.</p>
+    </div>
+  </section>
+  <div class="rk-thumbnails">
+    <img src="assets/img1.png" onclick="rkShowImage(0)">
+    <img src="assets/img2.png" onclick="rkShowImage(1)">
+    <img src="assets/img3.png" onclick="rkShowImage(2)">
+    <img src="assets/img4.png" onclick="rkShowImage(3)">
+  </div>
+</div>
+<script src="assets/product.js"></script>
+</body>
+</html>
