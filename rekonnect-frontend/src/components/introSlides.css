@@ -1,0 +1,141 @@
+/* entire slide container */
+.intro-slide-container {
+  width: 100vw;
+  height: 100vh;
+  background: #f6f0e4;
+  overflow: hidden;
+}
+
+/* fade animation */
+.intro-inner {
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 0.7s ease;
+}
+
+.fade-in {
+  opacity: 1;
+}
+
+.fade-out {
+  opacity: 0;
+}
+
+/* image slides 1–4 + 9 */
+.intro-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transform: scale(0.78);   /* zoomed-out */
+}
+.intro-img.quiz-info {
+  transform: scale(0.55) !important; 
+}
+ 
+
+/* ========== QUESTION SLIDES 5–8 ========== */
+
+.slide-wrap {
+  width: 100%;
+  height: 100%;
+  background: #f6f0e4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  position: relative;
+  padding-top: 60px; /* centers the title more */
+}
+
+/* title */
+.title {
+  font-family: "Old Standard TT", serif;
+  font-size: 96px;
+  font-style: italic;
+  color: black;
+  margin: 0;
+  margin-bottom: 50px;
+}
+
+/* center the boxes better */
+.center-wrap {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: nowrap;
+}
+
+/* the boxes */
+.choice {
+  width: 240px;
+  height: 135px;
+  border: 2px solid black;
+  border-radius: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Old Standard TT", serif;
+  font-style: italic;
+  font-size: 22px;
+  line-height: 1.4;
+  color: black;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+
+.choice:hover {
+  transform: scale(1.03);
+}
+
+/* footer tip text */
+.hint-text {
+  position: absolute;
+  right: 240px;
+  bottom: 95px;
+  font-family: "Old Standard TT", serif;
+  font-style: italic;
+  font-size: 18px;
+  transform: rotate(-7deg);
+  color: rgba(0, 0, 0, 0.7);
+}
+
+/* oyster image */
+.oyster-mark {
+  position: absolute;
+  right: 40px;
+  bottom: 40px;
+  width: 170px;
+  opacity: 0.9;
+}
+.slide-wrap-intro {
+  width: 100%;
+  height: 100%;
+  background: #f6f0e4;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;   /* 🔥 centers vertically */
+  align-items: center;       /* 🔥 centers horizontally */
+  text-align: center;
+  padding: 0;                /* remove question padding */
+}
+
+.slide-wrap-intro .title {
+  font-size: 80px;
+  font-style: italic;
+  margin-bottom: 20px;
+}
+
+.slide-wrap-intro .subtitle {
+  font-size: 24px;
+  margin-bottom: 10px;
+  font-family: "Old Standard TT", serif;
+}
+
+.slide-wrap-intro .footer {
+  font-size: 20px;
+  opacity: 0.8;
+  font-style: italic;
+}
+
