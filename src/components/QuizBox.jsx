@@ -1,0 +1,400 @@
+import React, { useState, useEffect } from "react";
+import "./QuizBox.css";
+
+const INITIAL_SCORES = {
+  moringa: 0,
+  ayurveda: 0,
+  beet: 0,
+  mag: 0,
+  digest: 0,
+  noot: 0,
+};
+
+// 👉 update this to whatever your oyster / shell illustration file is
+// e.g. put `oyster.png` in /public/results and use "/results/oyster.png"
+const OYSTER_IMAGE_SRC = "/results/oyster.png";
+
+export default function QuizBox({ onFinish }) {
+  const [step, setStep] = useState(1);
+  const [scores, setScores] = useState(INITIAL_SCORES);
+  const [fade, setFade] = useState("fade-in");
+
+  const next = () => {
+    setFade("fade-out");
+    setTimeout(() => {
+      setStep((s) => s + 1);
+      setFade("fade-in");
+    }, 350);
+  };
+
+  const addScores = (inc) => {
+    setScores((prev) => {
+      const nextScores = { ...prev };
+      for (const key in inc) nextScores[key] += inc[key];
+      return nextScores;
+    });
+    next();
+  };
+
+  useEffect(() => {
+    if (step === 5 && onFinish) onFinish(scores);
+  }, [step, scores, onFinish]);
+
+  // ------------------- RENDER RESULT -------------------
+  const renderResults = () => {
+    const topKey = Object.keys(scores).reduce((a, b) =>
+      scores[a] > scores[b] ? a : b
+    );
+
+    return (
+      <div className="result-shell">
+        {/* 1. FADE-TO-CREAM OVERLAY */}
+        <div className="result-blackout" />
+
+        {/* 2. REVEAL CONTAINER (slides result down from top) */}
+        <div className="reveal-mask-container">
+          <ResultSlide type={topKey} />
+        </div>
+      </div>
+    );
+  };
+
+  // ------------------- MAIN FLOW -------------------
+  if (step === 5) return renderResults();
+
+  return (
+    <div className={`quiz-shell ${fade}`}>
+
+      {/* -------------------- Q1 -------------------- */}
+      {step === 1 && (
+        <>
+          <h1 className="quiz-title">“your work-schedule”</h1>
+
+          <div className="quiz-options-row">
+            <button
+              className="quiz-option"
+              onClick={() => addScores({ ayurveda: 1, moringa: 1 })}
+            >
+              morning person
+            </button>
+
+            <button
+              className="quiz-option"
+              onClick={() => addScores({ beet: 1, noot: 1 })}
+            >
+              all hours disciplinarian
+            </button>
+
+            <button
+              className="quiz-option"
+              onClick={() => addScores({ mag: 1, digest: 1 })}
+            >
+              late night grinder
+            </button>
+          </div>
+
+          <p className="quiz-note quiz-note-right">
+            pick the most accurate option.
+          </p>
+        </>
+      )}
+
+      {/* -------------------- Q2 -------------------- */}
+      {step === 2 && (
+        <>
+          <h1 className="quiz-title">“your needs”</h1>
+
+          <div className="quiz-options-row quiz-options-row-wide">
+            <button
+              className="quiz-option"
+              onClick={() => addScores({ moringa: 1 })}
+            >
+              more energy
+            </button>
+
+            <button
+              className="quiz-option"
+              onClick={() => addScores({ ayurveda: 1 })}
+            >
+              stress relief
+            </button>
+
+            <button
+              className="quiz-option"
+              onClick={() => addScores({ digest: 1 })}
+            >
+              digestive wellness
+            </button>
+
+            <button
+              className="quiz-option"
+              onClick={() => addScores({ noot: 1, mag: 1 })}
+            >
+              focus and productivity
+            </button>
+
+            <button
+              className="quiz-option"
+              onClick={() => addScores({ beet: 1 })}
+            >
+              a cardiovascular boost
+            </button>
+          </div>
+        </>
+      )}
+
+      {/* -------------------- Q3 -------------------- */}
+      {step === 3 && (
+        <>
+          <h1 className="quiz-title">“your ailments”</h1>
+
+          <div className="quiz-options-row quiz-options-row-wide">
+            <button
+              className="quiz-option"
+              onClick={() => addScores({ mag: 1, ayurveda: 1 })}
+            >
+              bodily tension
+            </button>
+
+            <button
+              className="quiz-option"
+              onClick={() => addScores({ noot: 1, mag: 1 })}
+            >
+              scatterbrained
+            </button>
+
+            <button
+              className="quiz-option"
+              onClick={() => addScores({ digest: 1 })}
+            >
+              gut bloat
+            </button>
+
+            <button
+              className="quiz-option"
+              onClick={() => addScores({ ayurveda: 1, moringa: 1 })}
+            >
+              emotional drainage
+            </button>
+
+            <button
+              className="quiz-option"
+              onClick={() => addScores({ beet: 1, ayurveda: 1 })}
+            >
+              lack of stamina
+            </button>
+          </div>
+
+          <p className="quiz-note quiz-note-right">your responses are not saved.</p>
+        </>
+      )}
+
+      {/* -------------------- Q4 -------------------- */}
+      {step === 4 && (
+        <>
+          <h1 className="quiz-title">“your desires”</h1>
+
+          <div className="quiz-options-row quiz-options-row-wide">
+            <button
+              className="quiz-option"
+              onClick={() => addScores({ moringa: 1 })}
+            >
+              clean energy
+            </button>
+
+            <button
+              className="quiz-option"
+              onClick={() => addScores({ ayurveda: 1 })}
+            >
+              groundedness, peace
+            </button>
+
+            <button
+              className="quiz-option"
+              onClick={() => addScores({ beet: 1, moringa: 1 })}
+            >
+              stamina and power
+            </button>
+
+            <button
+              className="quiz-option"
+              onClick={() => addScores({ noot: 1 })}
+            >
+              clear focus
+            </button>
+
+            <button
+              className="quiz-option"
+              onClick={() => addScores({ mag: 1, ayurveda: 1 })}
+            >
+              mental balance
+            </button>
+
+            <button
+              className="quiz-option"
+              onClick={() => addScores({ digest: 1 })}
+            >
+              a clean gut
+            </button>
+          </div>
+        </>
+      )}
+    </div>
+  );
+}
+
+/* ------------------- RESULT SLIDE COMPONENT ------------------- */
+
+function ResultSlide({ type }) {
+  // default to moringa if something weird happens
+  const t = type || "moringa";
+
+  if (t === "moringa") {
+    return (
+      <div className="result-slide result-moringa">
+        <div className="result-text">
+          <p className="result-line">
+            <span className="result-em">moringa</span> has chosen you.
+          </p>
+          <p className="result-line">
+            the miracle leaf of the ancient world,
+          </p>
+          <p className="result-line">
+            your energy rises with the sun again.
+          </p>
+
+          <div className="result-cta">
+            <span className="result-cta-main">begin vitality &rarr;</span>
+            <span className="result-link">[insert link]</span>
+          </div>
+        </div>
+        <ResultOyster />
+      </div>
+    );
+  }
+
+  if (t === "ayurveda") {
+    return (
+      <div className="result-slide result-ayurveda">
+        <div className="result-text">
+          <p className="result-line">
+            <span className="result-em">ayurveda</span> has called your name.
+          </p>
+          <p className="result-line">
+            three thousand years of calm woven into
+          </p>
+          <p className="result-line">one ritual.</p>
+          <p className="result-line">your balance returns, quietly.</p>
+
+          <div className="result-cta">
+            <span className="result-cta-main">enter balance &rarr;</span>
+            <span className="result-link">[insert link]</span>
+          </div>
+        </div>
+        <ResultOyster />
+      </div>
+    );
+  }
+
+  if (t === "beet") {
+    return (
+      <div className="result-slide result-beet">
+        <div className="result-text">
+          <p className="result-line">
+            the <span className="result-em">beetroot</span> path opens to you.
+          </p>
+          <p className="result-line">
+            bloodflow, warmth, movement, momentum.
+          </p>
+          <p className="result-line">your body begins to flow again.</p>
+
+          <div className="result-cta">
+            <span className="result-cta-main">step into flow &rarr;</span>
+            <span className="result-link">[insert link]</span>
+          </div>
+        </div>
+        <ResultOyster />
+      </div>
+    );
+  }
+
+  if (t === "noot") {
+    return (
+      <div className="result-slide result-noot">
+        <div className="result-text">
+          <p className="result-line">clarity has found you.</p>
+          <p className="result-line">
+            the <span className="result-em">nootropic</span> of the future,
+          </p>
+          <p className="result-line">grounded in nature.</p>
+          <p className="result-line">
+            your mind clears like a cloudless midday sky.
+          </p>
+
+          <div className="result-cta">
+            <span className="result-cta-main">unlock clarity &rarr;</span>
+            <span className="result-link">[insert link]</span>
+          </div>
+        </div>
+        <ResultOyster />
+      </div>
+    );
+  }
+
+  if (t === "mag") {
+    return (
+      <div className="result-slide result-mag">
+        <div className="result-text">
+          <p className="result-line">
+            <span className="result-em">serenity</span> reaches out for you.
+          </p>
+          <p className="result-line">
+            nervous system settling, tension dissolving.
+          </p>
+          <p className="result-line">
+            your evenings-- and thoughts-- grow softer.
+          </p>
+
+          <div className="result-cta">
+            <span className="result-cta-main">enter serenity &rarr;</span>
+            <span className="result-link">[insert link]</span>
+          </div>
+        </div>
+        <ResultOyster />
+      </div>
+    );
+  }
+// acv
+return (
+  <div className="result-slide result-acv">
+    <div className="result-text">
+      <p className="result-line">
+        <span className="result-em">vitality</span> aligns with you.
+      </p>
+      <p className="result-line">
+        your gut clears, your fire steadies.
+      </p>
+      <p className="result-line">
+        circulation opens, digestion remembers balance.
+      </p>
+
+      <div className="result-cta">
+        <span className="result-cta-main">explore vitality &rarr;</span>
+        <span className="result-link">[insert link]</span>
+      </div>
+    </div>
+    <ResultOyster />
+  </div>
+);
+
+}
+
+function ResultOyster() {
+  return (
+    <img
+      className="result-oyster"
+      src={OYSTER_IMAGE_SRC}
+      alt="oyster illustration"
+    />
+  );
+}

@@ -1,0 +1,27 @@
+.paths {
+  padding: 80px 20px;
+  background: #fafafa;
+  text-align: center;
+}
+
+.paths-title {
+  font-family: "Playfair Display", serif;
+  font-size: 36px;
+  margin-bottom: 40px;
+}
+
+.paths-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 25px;
+  padding: 0 20px;
+}
+
+.path {
+  padding: 22px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background: white;
+  font-size: 16px;
+  line-height: 1.4;
+}
